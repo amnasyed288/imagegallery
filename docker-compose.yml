@@ -1,1 +1,49 @@
- 
+version: '3'
+services:
+  user-acc-mgmt-serv:
+    build:
+      context: ./src/UserAccMgmtServ
+    ports:
+      - "5000:5000"
+
+  storage-mgmt-serv:
+    build:
+      context: ./src/StorageMgmtServ
+    ports:
+      - "5001:5001"
+
+  usage-mntr-serv:
+    build:
+      context: ./src/UsageMntrServ
+    ports:
+      - "5002:5002"
+
+  view-generator-serv:
+    build:
+      context: ./src/ViewGeneratorServ
+    ports:
+      - "5004:5004"
+
+  controller-microserv:
+    build:
+      context: ./src/ControllerMicroserv
+    ports:
+      - "5005:5005"
+
+  model-microserv:
+    build:
+      context: ./src/ModelMicroserv
+    ports:
+      - "5006:5006"
+
+  logging-microserv:
+    build:
+      context: ./src/LoggingMicroserv
+    ports:
+      - "5007:5007"
+
+  load-testing:
+    build:
+      context: ./src/LoadTesting
+    ports:
+      - "5008:5008"
