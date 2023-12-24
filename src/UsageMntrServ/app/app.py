@@ -1,11 +1,20 @@
 # app.py
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from routes import app
+from routes import define_routes
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'  
-db = SQLAlchemy(app)
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user_activity.db'
+
+# Initialize the database
+from models import db
+db.init_app(app)
+
+# Create the database tables
+with app.app_context():
+    db.create_all()
+
+# Define route handlers
+define_routes(app)
 
 if __name__ == '__main__':
-    db.create_all()  # Create database tables before running the app
-    app.run(host='0.0.0.0', port=5002, debug=True)
+    app.run(host='0.0.0.0', port=5002)

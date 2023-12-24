@@ -1,36 +1,51 @@
 # routes.py
-from flask import Flask, jsonify, request
-from models import db, UserUsage
-import datetime
+from flask import jsonify, request
+from models import UserActivityModel, db
+from usagemntrserv import log_activity, get_daily_usage, send_alert
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'  # Use the same URI as in app.py
-db.init_app(app)
+def define_routes(app):
+    @app.route('/trackActivity', methods=['POST'])
+    def track_activity():
+        try:
+            req_data = request.get_json()
 
-DAILY_THRESHOLD = 25
+            if 'user_id' not in req_data or 'activity_type' not in req_data or 'data_volume' not in req_data:
+                return jsonify({"error": "Invalid request data"}), 400
 
-@app.route('/record-usage', methods=['POST'])
-def record_usage():
-    data = request.get_json()
-    user_id = data.get('user_id')
-    data_volume = data.get('data_volume')
+            user_id = req_data['user_id']
+            activity_type = req_data['activity_type']
+            data_volume = req_data['data_volume']
 
-    if user_id and data_volume:
-        date_today = datetime.date.today()
-        new_usage = UserUsage(user_id=user_id, date=date_today, data_volume=data_volume)
-        db.session.add(new_usage)
-        db.session.commit()
+            log_activity(user_id, activity_type, data_volume)
 
-        if data_volume > DAILY_THRESHOLD:
-            return jsonify({"message": "Usage recorded. Warning: Daily threshold exceeded!"})
-        else:
-            return jsonify({"message": "Usage recorded successfully"})
-    else:
-        return jsonify({"error": "Invalid data provided"}), 400
+            return jsonify({"message": "User activity logged successfully"})
 
-@app.route('/get-usage/<user_id>', methods=['GET'])
-def get_user_usage(user_id):
-    user_usage = UserUsage.query.filter_by(user_id=user_id).all()
-    if not user_usage:
-        return jsonify({"user_id": user_id, "message": "User not found"}), 404
-    return jsonify({"user_id": user_id, "usage_records": [usage.__dict__ for usage in user_usage]})
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+
+    @app.route('/checkUsage/<int:user_id>', methods=['GET'])
+    def check_daily_usage(user_id):
+        try:
+            daily_threshold = 25.0
+
+            daily_usage = get_daily_usage(user_id)
+
+            return jsonify({"user_id": user_id, "daily_usage": daily_usage, "threshold": daily_threshold})
+
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+
+    @app.route('/alertUser/<int:user_id>', methods=['POST'])
+    def alert_user(user_id):
+        try:
+            daily_threshold = 25.0
+
+            daily_usage = get_daily_usage(user_id)
+
+            if daily_usage > daily_threshold:
+                send_alert(user_id)
+
+            return jsonify({"message": "Alert sent successfully"})
+
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500

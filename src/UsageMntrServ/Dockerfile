@@ -1,13 +1,14 @@
-FROM python:3.11.1
+#DockerFile
+FROM python:3.8-slim
+
 
 WORKDIR /app
 
-COPY requirements.txt requirements.txt
 
-RUN pip install --no-cache-dir -r requirements.txt
+COPY . /app
 
-COPY app /app
+RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
 EXPOSE 5002
 
-CMD ["python", "app/app.py"]
+CMD ["python", "app.py"]
