@@ -12,7 +12,7 @@ COPY . /app
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
 # Make port 5001 available to the world outside this container
-EXPOSE 5001
+EXPOSE 5007
 
 # Define environment variable
 ENV NAME World
