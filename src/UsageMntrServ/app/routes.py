@@ -1,9 +1,40 @@
-# routes.py
 from flask import jsonify, request
 from models import UserActivityModel, db
-from usagemntrserv import log_activity, get_daily_usage, send_alert
+import datetime
+
+def log_activity(user_id, activity_type, data_volume):
+    try:
+        activity = UserActivityModel(user_id=user_id, activity_type=activity_type, data_volume=data_volume)
+        db.session.add(activity)
+        db.session.commit()
+    except Exception as e:
+        raise e
+
+def get_daily_usage(user_id):
+    try:
+        today = datetime.datetime.utcnow().date()
+        daily_usage = db.session.query(db.func.sum(UserActivityModel.data_volume)).filter(
+            UserActivityModel.user_id == user_id,
+            db.func.DATE(UserActivityModel.timestamp) == today
+        ).scalar() or 0.0
+
+        return daily_usage
+    except Exception as e:
+        raise e
+
+def send_alert(user_id):
+    try:
+        # Placeholder for sending alerts (log a warning message)
+        alert_message = f"ALERT: User {user_id} has exceeded the daily usage threshold!"
+        app.logger.warning(alert_message)
+
+    except Exception as e:
+        raise e
 
 def define_routes(app):
+    @app.route("/")
+    def works():
+        return "works"
     @app.route('/trackActivity', methods=['POST'])
     def track_activity():
         try:
