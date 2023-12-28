@@ -121,7 +121,7 @@ def display(file_id):
         return send_file(file_data, mimetype=mimetype)
 
     except Exception as e:
-        return jsonify({'error': f'Error retrieving the file: {str(e)}'}), 500
+        return jsonify({'error': f'Error retrieving the file: {str(e)}'}), 50
 
 
 if __name__ == '__main__':
