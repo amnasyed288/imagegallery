@@ -1,0 +1,26 @@
+/* Sidebar.css */
+.sidebar {
+    position: fixed;
+    top: 100px;
+    display: flex;
+    left: 0;
+    height: 100vh;
+    width: 10%;
+    font-size: 1.2rem;
+    background-color: #222e50; /* Adjust the background color as needed */
+    color: white; /* Adjust the text color as needed */
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional: Add box shadow for a subtle effect */
+  }
+
+
+  
+  .sidebar h3 {
+    margin-bottom: 5px;
+  }
+  
+  /* Optional: Add styles for individual sidebar components */
+  .sidebar-component {
+    margin-bottom: 20px;
+  }
+  
