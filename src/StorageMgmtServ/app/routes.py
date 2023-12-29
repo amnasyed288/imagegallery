@@ -4,6 +4,8 @@ from bson import ObjectId
 from flask import Flask
 
 app = Flask(__name__)
+from flask_cors import CORS
+CORS(app)
 
 
 @app.route('/signup', methods=['POST'])

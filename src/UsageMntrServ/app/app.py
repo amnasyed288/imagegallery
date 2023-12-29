@@ -3,6 +3,8 @@ from flask import Flask
 from routes import define_routes
 
 app = Flask(__name__)
+from flask_cors import CORS
+CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user_activity.db'
 
 # Initialize the database
