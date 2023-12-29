@@ -27,7 +27,7 @@ def register_user():
 
 
 # API to login (authentication)
-@app.route('/api/user/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login_user():
     if request.method == 'POST':
         data = request.json
