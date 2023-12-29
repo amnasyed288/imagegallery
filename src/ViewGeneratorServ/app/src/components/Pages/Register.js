@@ -60,8 +60,7 @@ const Register = () => {
     };
 
     try {
-      const response = await axios.post("http://localhost:3002/register", formData);
-
+      const response = await axios.post("http://localhost:5000/register", formData);
       console.log("Request sent ");
 
       if (response.status === 200) {

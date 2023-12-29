@@ -9,6 +9,7 @@ import  NavBar from "./components/NavBar";
 import Gallery from "./components/Pages/Gallery";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 function App() {
 
 

@@ -8,17 +8,23 @@ def works():
     return "works"
 
 # API to register a new user
-@app.route('/api/user/register', methods=['GET', 'POST'])
+@app.route('/register', methods=['POST'])
 def register_user():
     if request.method == 'POST':
         data = request.json
-        new_user = User(username=data['username'], password=data['password'])
+        new_user = User(
+            first_name=data.get('firstName', ''),
+            last_name=data.get('lastName', ''),
+            username=data.get('email', ''),
+            password=data.get('password', '')
+        )
         db.session.add(new_user)
         db.session.commit()
 
         return jsonify({'message': 'User registered successfully'})
     
     return jsonify({'message': 'Use POST method to register a new user'})
+
 
 # API to login (authentication)
 @app.route('/api/user/login', methods=['GET', 'POST'])
