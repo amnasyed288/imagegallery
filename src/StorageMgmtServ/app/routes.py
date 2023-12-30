@@ -1,10 +1,13 @@
+
+
+from flask_cors import CORS
+
 from models import user_storage_collection, fs
 from flask import request, jsonify, send_file
 from bson import ObjectId
 from flask import Flask
 
 app = Flask(__name__)
-from flask_cors import CORS
 CORS(app)
 
 

@@ -15,7 +15,7 @@ CORS(app)
 # db = SQLAlchemy(app)
 
 client = MongoClient('mongodb://localhost:27017/')
-db = client['imagegallery']
+db = client['usercredentials']
 user_collection = db['userdata']
 
 # db = client['imagegallery']
