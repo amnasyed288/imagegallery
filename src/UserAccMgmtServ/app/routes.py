@@ -1,6 +1,7 @@
 # src/user_acc_mgmt_serv/routes.py
 from flask import request, jsonify
 from __init__ import app, user_collection
+import requests
 
 
 @app.route("/")
@@ -21,6 +22,7 @@ def register_user():
             'password': data.get('password', '')
         }
         user_collection.insert_one(new_user)
+        requests.post("http://localhost:5000/register_event", json=data)
 
         return jsonify({'message': 'User registered successfully'})
 
