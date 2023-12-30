@@ -11,7 +11,7 @@ const Login = (props) => {
     e.preventDefault();
 
     const formData = {
-      email,
+      email: email,
       password: pass,
     };
 
@@ -84,7 +84,7 @@ const Login = (props) => {
                     />
                   </div>
 
-                  
+
 
                   <button
                     className="btn btn-primary btn-lg btn-block"
