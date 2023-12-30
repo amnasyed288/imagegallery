@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./NavBar.css";
 
-function NavBar() {
+function NavBar({ isLoggedIn, setIsLoggedIn }) {
   const [click, setClick] = useState(false);
 
   const handleClick = () => setClick(!click);
+  const logoutHandler = () => setIsLoggedIn(false)
 
   return (
     <>
@@ -15,45 +16,44 @@ function NavBar() {
             <span>Gallery</span>
           </NavLink>
 
-          <ul className={click ? "nav-menu active" : "nav-menu"}>
-            <li className="nav-item">
-              <NavLink
-                exact
-                to="/Gallery"
-                
-                className="nav-links"
-                onClick={handleClick}
-              >
-                Home
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                exact
-                to="/Login"
-                
-                className="nav-links"
-                onClick={handleClick}
-              >
-                Log In
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                exact
-                to="/Register"
-                
-                className="nav-links"
-                onClick={handleClick}
-              >
-                Register
-              </NavLink>
-            </li>
-            
+          <ul className={"nav-menu"}>
+
+            {
+              isLoggedIn ? (
+                <>
+                  <li className="nav-item">
+                    <NavLink exact to="/Gallery" className="nav-links" >
+                      Home
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink exact to="/Login" className="nav-links" onClick={logoutHandler}>
+                      Logout
+                    </NavLink>
+                  </li>
+
+                </>
+              ) : null
+            }
+            {
+              !isLoggedIn ? (
+                <>
+                  <li className="nav-item">
+                    <NavLink exact to="/Login" className="nav-links" >
+                      Log In
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink exact to="/Register" className="nav-links" >
+                      Register
+                    </NavLink>
+                  </li>
+                </>
+              ) : null
+            }
+
           </ul>
-          <div className="nav-icon" onClick={handleClick}>
-            {/* Remove or comment out the icon-related code */}
-          </div>
+
         </div>
       </nav>
     </>

@@ -11,7 +11,8 @@ CORS(app)
 
 @app.route('/signup', methods=['POST'])
 def signup():
-    user_id = request.form.get('user_id')
+    data = request.json
+    user_id = data.get('user_id')
 
     if user_storage_collection.find_one({'user_id': user_id}):
         return jsonify({'Alert': 'User already signed up!'}), 400
@@ -22,7 +23,7 @@ def signup():
         'total_storage': 10 * 1024
     })
     
-    return jsonify({'message': 'User signed up successfully!'})
+    return jsonify({'status': 'success','message': 'User signed up successfully!'})
 
 
 @app.route('/upload', methods=['POST'])
@@ -66,7 +67,7 @@ def upload():
             if used_storage >= 0.8 * total_storage:
                 send_alert(user_id, used_storage, total_storage)
 
-            return jsonify({'message': 'File uploaded successfully!', 'Alert': f'User {user_id} has used {updated_storage}KB out of {total_storage}KB storage.'})
+            return jsonify({'status': 'success','message': 'File uploaded successfully!', 'Alert': f'User {user_id} has used {updated_storage}KB out of {total_storage}KB storage.'})
         else:
             return jsonify({'error': 'Not enough storage!'}), 400
     else:
@@ -100,7 +101,7 @@ def delete():
                     }
                 }
             )
-            return jsonify({'message': 'File deleted successfully!'})
+            return jsonify({'status': 'success','message': 'File deleted successfully!'})
 
     return jsonify({'error': 'File not found'}), 400
 
