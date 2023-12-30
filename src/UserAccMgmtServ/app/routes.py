@@ -28,7 +28,7 @@ def register_user():
         user_id = user_document.get('user_id')
 
 
-        return jsonify({'message': 'User registered successfully', 'user_id': user_id})
+        return jsonify({'status': 'success', 'message': 'User registered successfully', 'user_id': user_id}), 200
     
 
     return jsonify({'message': 'Use POST method to register a new user'})

@@ -1,5 +1,3 @@
-
-
 from flask_cors import CORS
 
 from models import user_storage_collection, fs
