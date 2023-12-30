@@ -60,7 +60,7 @@ const Register = () => {
     };
 
     try {
-      const response = await axios.post("http://localhost:5000/register", formData);
+      const response = await axios.post("http://localhost:5002/register", formData);
       console.log("Request sent ");
 
       if (response.status === 200) {
@@ -169,7 +169,7 @@ const Register = () => {
                         Password
                       </label>
                       <input
-                        
+
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         type="password"
@@ -185,7 +185,7 @@ const Register = () => {
                       Sign up
                     </button>
 
-                    
+
                   </form>
                   {registrationStatus && (
                     <MyModal
