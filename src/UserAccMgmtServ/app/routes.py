@@ -1,7 +1,6 @@
 # src/user_acc_mgmt_serv/routes.py
 from flask import request, jsonify
 from __init__ import app, user_collection
-from models import User
 
 
 @app.route("/")
