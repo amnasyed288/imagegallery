@@ -65,6 +65,7 @@ const Register = () => {
 
       if (response.status === 200) {
         setRegistrationStatus("success");
+        console.log(response.data)
       } else {
         setRegistrationStatus("failure");
         console.error("Registration failed:", response.data);

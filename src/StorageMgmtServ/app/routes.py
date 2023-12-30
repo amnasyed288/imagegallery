@@ -1,4 +1,4 @@
-from app import app, user_storage_collection, fs
+from models import user_storage_collection, fs
 from flask import request, jsonify, send_file
 from bson import ObjectId
 from flask import Flask
@@ -20,7 +20,7 @@ def signup():
         'used_storage': 0,
         'total_storage': 10 * 1024
     })
-
+    
     return jsonify({'message': 'User signed up successfully!'})
 
 
@@ -127,4 +127,4 @@ def display(file_id):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5001)
+    app.run(debug=True, port=5002)

@@ -1,6 +1,7 @@
 # src/user_acc_mgmt_serv/routes.py
 from flask import request, jsonify
 from __init__ import app, user_collection
+import requests
 
 
 @app.route("/")
@@ -21,6 +22,8 @@ def register_user():
             'password': data.get('password', '')
         }
         user_collection.insert_one(new_user)
+        
+        # Sending a request to eventbus
 
         return jsonify({'message': 'User registered successfully'})
 
@@ -37,6 +40,7 @@ def login_user():
             username=data['username'], password=data['password']).first()
 
         if user:
+            
             return jsonify({'message': 'Login successful'})
         else:
             return jsonify({'error': 'Invalid credentials'})
