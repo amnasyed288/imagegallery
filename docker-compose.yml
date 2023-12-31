@@ -4,13 +4,13 @@ services:
     build:
       context: ./src/UserAccMgmtServ
     ports:
-      - "5000:5000"
+      - "5001:5001"
 
   storage-mgmt-serv:
     build:
       context: ./src/StorageMgmtServ
     ports:
-      - "5001:5001"
+      - "5003:5003"
 
   usage-mntr-serv:
     build:
