@@ -1,0 +1,19 @@
+# deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: view
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: view
+  template:
+    metadata:
+      labels:
+        app: view
+    spec:
+      containers:
+        - name: view
+          image: sha256:1bde0f533174a111b06693ae1e68a4d0320a0df5232ae1f2bbf774b642e63e99

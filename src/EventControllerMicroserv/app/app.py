@@ -9,8 +9,8 @@ CORS(app)
 # Replace these URLs with the actual URLs of your registration and storage microservices
 ACC_MGT_SERVICE_REGISTER = "http://localhost:5001/register"
 ACC_MGT_SERVICE_LOGIN = "http://localhost:5001/login"
-STORAGE_MICROSERVICE_SIGNUP = "http://localhost:5002/signup"
-STORAGE_MICROSERVICE_UPLOAD = "http://localhost:5002/upload"
+STORAGE_MICROSERVICE_SIGNUP = "http://localhost:5003/signup"
+STORAGE_MICROSERVICE_UPLOAD = "http://localhost:5003/upload"
 LOGGING_MICROSERVICE_UPLOAD = "http://localhost:5007/upload"
 DATAMTR_MICROSERVICE_UPLOAD = "http://localhost:5002/upload"
 
