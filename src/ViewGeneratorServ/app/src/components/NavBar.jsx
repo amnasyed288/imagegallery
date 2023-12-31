@@ -3,9 +3,6 @@ import { NavLink } from "react-router-dom";
 import "./NavBar.css";
 
 function NavBar({ isLoggedIn, setIsLoggedIn }) {
-  const [click, setClick] = useState(false);
-
-  const handleClick = () => setClick(!click);
   const logoutHandler = () => setIsLoggedIn(false)
 
   return (

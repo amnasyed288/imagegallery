@@ -41,12 +41,7 @@ const Gallery = () => {
       {/* <Sidebar /> */}
       <div>
         <h1>Upload Images</h1>
-        <ImageUploading
-          multiple
-          value={images}
-          onChange={onChange}
-          maxNumber={maxNumber}
-          dataURLKey="data_url"
+        <ImageUploading multiple value={images} onChange={onChange} maxNumber={maxNumber} dataURLKey="data_url"
         >
           {({ imageList, onImageUpload, onImageUpdate, onImageRemove }) => (
             <div>
