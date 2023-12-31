@@ -52,12 +52,14 @@ def login_user():
 
         user = user_collection.find_one(
             {'email': email, 'password': password})
+
         # user = User.query.filter_by(
         #     username=data['username'], password=data['password']).first()
 
         if user:
+            user_id = str(user['_id'])
 
-            return jsonify({'status': 'success', 'message': 'Login successful'})
+            return jsonify({'status': 'success', 'message': 'Login successful', 'user_id': user_id})
         else:
             return jsonify({'error': 'Invalid credentials'})
 
