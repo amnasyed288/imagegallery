@@ -15,4 +15,4 @@ spec:
     spec:
       containers:
         - name: event
-          image: sha256:d1bd57dfac47dd7ab6c990265870057ef1d75d5caf88bbf5fecaae68e639dcb6
+          image: sha256:c89ab09d3d3b1b408a636bf456a1a23fda3c66f8abe7a20e30bb7fb019494151  
