@@ -1,0 +1,18 @@
+# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stg 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stg
+  template:
+    metadata:
+      labels:
+        app: stg    
+    spec:
+      containers:
+        - name: stg    
+          image: sha256:75e9252d30ec8335af0dd0b8da8c2986eb33e972ebef6aa4fff66627f4fc9248   

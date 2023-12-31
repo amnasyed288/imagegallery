@@ -3,17 +3,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: event
+  name: log
 spec:
+
   replicas: 1
   selector:
     matchLabels:
-      app: event
+      app: log
   template:
     metadata:
       labels:
-        app: event
+        app: log
     spec:
       containers:
-        - name: event
-          image: sha256:1bde0f533174a111b06693ae1e68a4d0320a0df5232ae1f2bbf774b642e63e99
+        - name: log
+          image: sha256:1a7604ff8c15957783751b1219e9d5c074e23b94e185fb821f0bb5c30cd5f29b   

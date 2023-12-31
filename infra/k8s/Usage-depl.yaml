@@ -15,4 +15,4 @@ spec:
     spec:
       containers:
         - name: usage
-          image: sha256:d1bd57dfac47dd7ab6c990265870057ef1d75d5caf88bbf5fecaae68e639dcb6
+          image: sha256:c54b1f07e8de273ea91bcc0576efec9d65f7689a415af5f651254cbbfdfde844 
