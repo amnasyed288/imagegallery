@@ -13,9 +13,6 @@ const Gallery = () => {
     setImages(imageList);
   };
 
-  const remove = () => {
-
-  }
 
   const onImageUploadB = async () => {
     const formData = new FormData();

@@ -60,13 +60,15 @@ const Register = () => {
     };
 
     try {
-      const response = await axios.post("http://localhost:5002/register", formData);
+      const response = await axios.post("http://localhost:5000/register", formData);
       console.log("Request sent ");
-
+      
       if (response.status === 200) {
-        setRegistrationStatus("success");
-      } else {
-        setRegistrationStatus("failure");
+        setRegistrationStatus(response.data.registration_response.message);
+        console.log(response.data)
+      } 
+      else {
+        setRegistrationStatus(response.data.registration_response.message);
         console.error("Registration failed:", response.data);
       }
     } catch (error) {
@@ -169,7 +171,7 @@ const Register = () => {
                         Password
                       </label>
                       <input
-
+                        
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         type="password"
@@ -185,7 +187,7 @@ const Register = () => {
                       Sign up
                     </button>
 
-
+                    
                   </form>
                   {registrationStatus && (
                     <MyModal
@@ -196,9 +198,7 @@ const Register = () => {
                           : handleClose
                       }
                       text={
-                        registrationStatus === "success"
-                          ? "Registration successful!"
-                          : "Registration failed. Please try again."
+                        registrationStatus 
                       }
                       btn={
                         registrationStatus === "success"

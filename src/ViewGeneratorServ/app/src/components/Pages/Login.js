@@ -20,7 +20,7 @@ const Login = ({ isLoggedIn, setIsLoggedIn }) => {
     try {
       // Assuming your login microservice is running at http://localhost:3001
       const response = await axios.post(
-        "http://localhost:5002/login",
+        "http://localhost:5000/login",
         formData
       );
       console.log(response.status);
@@ -28,7 +28,7 @@ const Login = ({ isLoggedIn, setIsLoggedIn }) => {
 
       if (response.status === 200) {
         // Login successful
-        console.log("Login successful:", response.data);
+        console.log("Login successful:", response.data.login_responses);
         console.log("BEFORE: " + isLoggedIn);
         setIsLoggedIn(true);
         console.log("After: " + isLoggedIn);

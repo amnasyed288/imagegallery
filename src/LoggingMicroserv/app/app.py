@@ -12,24 +12,20 @@ log_handler = RotatingFileHandler(r'src\LoggingMicroserv\app\log_files\shared.lo
 log_handler.setLevel(logging.INFO)
 app.logger.addHandler(log_handler)
 
-@app.before_request
-def log_request_info():
-    app.logger.info('Request URL: %s', request.url)
-    app.logger.info('Request method: %s', request.method)
-    app.logger.info('Request headers: %s', request.headers)
-    app.logger.info('Request data: %s', request.data)
+# @app.before_request
+# def log_request_info():
+#     app.logger.info('Request URL: %s', request.url)
+#     app.logger.info('Request method: %s', request.method)
+#     app.logger.info('Request headers: %s', request.headers)
+#     app.logger.info('Request data: %s', request.data)
 
-@app.after_request
+@app.route('/upload', methods=['POST'])
 def log_response_info(response):
     app.logger.info('Response status: %s', response.status)
     app.logger.info('Response headers: %s', response.headers)
     app.logger.info('Response data: %s', response.get_data(as_text=True))
     return response
 
-@app.route("/")
-def works():
-    app.logger.info("Logging microservice works")
-    return "Logging Serv Works"
 
 # Log 404 errors
 @app.errorhandler(404)
