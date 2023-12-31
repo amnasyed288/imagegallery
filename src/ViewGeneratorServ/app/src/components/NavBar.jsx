@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./NavBar.css";
 
@@ -19,12 +18,12 @@ function NavBar({ isLoggedIn, setIsLoggedIn }) {
               isLoggedIn ? (
                 <>
                   <li className="nav-item">
-                    <NavLink exact to="/Gallery" className="nav-links" >
+                    <NavLink exact='true' to="/Gallery" className="nav-links" >
                       Home
                     </NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink exact to="/Login" className="nav-links" onClick={logoutHandler}>
+                    <NavLink exact='true' to="/Login" className="nav-links" onClick={logoutHandler}>
                       Logout
                     </NavLink>
                   </li>

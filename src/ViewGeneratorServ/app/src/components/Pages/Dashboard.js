@@ -1,14 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Dashboard = ({ onLogout }) => {
- return (
+  return (
     <div>
       <h1>Welcome to the Dashboard!</h1>
-      <Link to="/Gallery">Go to Gallery</Link>
+      <NavLink to="/Gallery">Go to Gallery</NavLink>
       <button onClick={onLogout}>Logout</button>
     </div>
- );
+  );
 };
 
 export default Dashboard;

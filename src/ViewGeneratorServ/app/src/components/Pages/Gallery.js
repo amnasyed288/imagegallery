@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ImageUploading from 'react-images-uploading';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from '../Sidebar';
 
 const Gallery = () => {
@@ -8,14 +9,19 @@ const Gallery = () => {
   const [uploadedImageUrls, setUploadedImageUrls] = useState([]);
   const maxNumber = 69;
 
-  const onChange = (imageList, addUpdateIndex) => {
+  const onChange = (imageList) => {
     setImages(imageList);
   };
+
+  const remove = () => {
+
+  }
 
   const onImageUploadB = async () => {
     const formData = new FormData();
     images.forEach((image, index) => {
       formData.append(`image${index + 1}`, image.file);
+      // console.log("DATA: " + formData)
     });
 
     try {
@@ -40,24 +46,23 @@ const Gallery = () => {
     <>
       {/* <Sidebar /> */}
       <div>
-        <h1>Upload Images</h1>
-        <ImageUploading multiple value={images} onChange={onChange} maxNumber={maxNumber} dataURLKey="data_url"
-        >
+        <h1 className='text-center'>Upload Images</h1>
+        <ImageUploading multiple value={images} onChange={onChange} maxNumber={maxNumber} dataURLKey="data_url">
           {({ imageList, onImageUpload, onImageUpdate, onImageRemove }) => (
-            <div>
-              <button onClick={onImageUpload}>Upload Image</button>
-              <button onClick={onImageUploadB}>Upload to Backend</button>
+            <div className='text-center mt-3'>
+              <button className='btn btn-primary mx-2' onClick={onImageUpload}>Upload Image</button>
+              <button className='btn btn-primary' onClick={onImageUploadB}>Upload to Backend</button>
               {uploadedImageUrls.map((imageUrl, index) => (
-                <div key={index} style={{ marginBottom: '10px' }}>
+                <div key={index} >
                   <img src={imageUrl} alt="" width="100" />
                 </div>
               ))}
               {imageList.map((image, index) => (
                 <div key={index} style={{ marginBottom: '10px' }}>
-                  <img src={image['data_url']} alt="" width="100" />
-                  <div>
-                    <button onClick={() => onImageUpdate(index)}>Update</button>
-                    <button onClick={() => onImageRemove(index)}>Remove</button>
+                  <img className='mt-3 border border-4 border-danger' src={image['data_url']} alt="" width="500" />
+                  <div className='my-5'>
+                    <button className='btn btn-info mx-5' onClick={() => onImageUpdate(index)}>Update</button>
+                    <button className='btn btn-danger' onClick={() => onImageRemove(index)}>Remove</button>
                   </div>
                 </div>
               ))}

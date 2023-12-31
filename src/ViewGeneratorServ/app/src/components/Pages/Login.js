@@ -107,7 +107,7 @@ const Login = ({ isLoggedIn, setIsLoggedIn }) => {
                       <p className="mb-4 ">
                         Don't have an account?{" "}
                         <NavLink
-                          exact
+                          exact='true'
                           to="/Register"
                         >
                           SignUp
