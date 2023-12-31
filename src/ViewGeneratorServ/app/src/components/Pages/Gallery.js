@@ -4,7 +4,7 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from '../Sidebar';
 
-const Gallery = () => {
+const Gallery = ({ userId }) => {
   const [images, setImages] = useState([]);
   const [uploadedImageUrls, setUploadedImageUrls] = useState([]);
   const maxNumber = 69;
@@ -17,13 +17,13 @@ const Gallery = () => {
   const onImageUploadB = async () => {
     const formData = new FormData();
     images.forEach((image, index) => {
-      formData.append(`image${index + 1}`, image.file);
+      formData.append(`image${index + 1}`, image.file, userId);
       // console.log("DATA: " + formData)
     });
 
     try {
       // Adjust the URL to match your backend endpoint
-      const response = await axios.post('http://localhost:5001/upload', formData, {
+      const response = await axios.post('http://localhost:5000/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
