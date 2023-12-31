@@ -20,7 +20,7 @@ def register_user():
 
         if user_collection.find_one({'email': already_email}):
             return jsonify({'message': 'User already signed up!'}), 400
-        
+
         new_user = {
             'first_name': data.get('firstName', ''),
             'last_name': data.get('lastName', ''),
@@ -29,17 +29,14 @@ def register_user():
         }
 
         result = user_collection.insert_one(new_user)
-        
+
         # Get the inserted document, including the generated '_id'
         user_document = user_collection.find_one({'_id': result.inserted_id})
-        
+
         # Extract the 'user_id' (MongoDB _id converted to str)
         user_id = str(user_document.get('_id'))
 
-        
-
         return jsonify({'status': 'success', 'message': 'User registered successfully', 'user_id': user_id}), 200
-    
 
     return jsonify({'message': 'Use POST method to register a new user'})
 
@@ -59,8 +56,8 @@ def login_user():
         #     username=data['username'], password=data['password']).first()
 
         if user:
-            
-            return jsonify({'status': 'success','message': 'Login successful'})
+
+            return jsonify({'status': 'success', 'message': 'Login successful'})
         else:
             return jsonify({'error': 'Invalid credentials'})
 
