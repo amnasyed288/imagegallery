@@ -76,7 +76,7 @@ def login_event():
 
             return jsonify({
                 'login_response': login_response.json(),
-                'message': 'Event forwarded to microservices successfully.'
+                'message': 'Event forwarded to microservices successfully.', 'user_id': user_id
             })
 
         else:

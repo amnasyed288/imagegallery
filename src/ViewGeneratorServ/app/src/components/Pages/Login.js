@@ -8,6 +8,7 @@ const Login = ({ isLoggedIn, setIsLoggedIn }) => {
 
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+  const [userId, setUserId] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,6 +32,8 @@ const Login = ({ isLoggedIn, setIsLoggedIn }) => {
         console.log("Login successful:", response.data.login_responses);
         console.log("BEFORE: " + isLoggedIn);
         setIsLoggedIn(true);
+        setUserId(response.user_id);
+        console.log("USERID: " + userId)
         console.log("After: " + isLoggedIn);
         // console.log(isLoggedIn);
       } else {
@@ -46,7 +49,7 @@ const Login = ({ isLoggedIn, setIsLoggedIn }) => {
   return (
     <>
       {isLoggedIn ?
-        <Gallery />
+        <Gallery userId={userId} />
         :
         <section className="vh-100" style={{ height: "100vh", backgroundColor: "#b7c0ee" }}>
           <div className="container py-5 h-100">
