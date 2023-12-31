@@ -14,9 +14,24 @@ CORS(app)
 
 # db = SQLAlchemy(app)
 
-client = MongoClient('mongodb://localhost:27017/')
-db = client['usercredentials']
-user_collection = db['userdata']
+# client = MongoClient('mongodb+srv://msaadanbese21seecs:<password>@cluster0.gljno9v.mongodb.net/')
 
-# db = client['imagegallery']
-# user_storage_collection = db['userimage']
+
+
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
+
+uri = "mongodb+srv://msaadanbese21seecs:driweswa@cluster0.gljno9v.mongodb.net/imagegallery"
+
+# Create a new client and connect to the server
+client = MongoClient(uri, server_api=ServerApi('1'))
+
+# Send a ping to confirm a successful connection
+try:
+    client.admin.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
+except Exception as e:
+    print(e)
+
+db = client['imagegallery']
+user_collection = db['gallery']

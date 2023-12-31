@@ -1,8 +1,7 @@
-# deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: usage
+  name: usage-depl
 spec:
   replicas: 1
   selector:
@@ -15,4 +14,20 @@ spec:
     spec:
       containers:
         - name: usage
-          image: sha256:c54b1f07e8de273ea91bcc0576efec9d65f7689a415af5f651254cbbfdfde844 
+          image: saadan1234/usage
+          ports:
+            - containerPort: 5002
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: usage-serv
+spec:
+  type: ClusterIP
+  selector:
+    app: usage
+  ports:
+  - name: usage
+    protocol: TCP
+    port: 5002
+    targetPort: 5002

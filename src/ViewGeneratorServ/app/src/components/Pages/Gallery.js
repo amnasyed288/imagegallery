@@ -23,7 +23,7 @@ const Gallery = () => {
 
     try {
       // Adjust the URL to match your backend endpoint
-      const response = await axios.post('http://localhost:5001/upload', formData, {
+      const response = await axios.post('http://event-serv/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

@@ -7,12 +7,12 @@ app = Flask(__name__)
 CORS(app)
 
 # Replace these URLs with the actual URLs of your registration and storage microservices
-ACC_MGT_SERVICE_REGISTER = "http://localhost:5001/register"
-ACC_MGT_SERVICE_LOGIN = "http://localhost:5001/login"
-STORAGE_MICROSERVICE_SIGNUP = "http://localhost:5003/signup"
-STORAGE_MICROSERVICE_UPLOAD = "http://localhost:5003/upload"
-LOGGING_MICROSERVICE_UPLOAD = "http://localhost:5007/upload"
-DATAMTR_MICROSERVICE_UPLOAD = "http://localhost:5002/upload"
+ACC_MGT_SERVICE_REGISTER = "http://user-serv:5001/register"
+ACC_MGT_SERVICE_LOGIN = "http://user-serv:5001/login"
+STORAGE_MICROSERVICE_SIGNUP = "http://stg-serv:5003/signup"
+STORAGE_MICROSERVICE_UPLOAD = "http://stg-serv:5003/upload"
+LOGGING_MICROSERVICE_UPLOAD = "http://log-serv:5007/upload"
+DATAMTR_MICROSERVICE_UPLOAD = "http://usage-serv:5002/upload"
 
 
 @app.route('/register', methods=['POST'])

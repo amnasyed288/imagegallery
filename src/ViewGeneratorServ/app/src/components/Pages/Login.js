@@ -18,9 +18,9 @@ const Login = ({ isLoggedIn, setIsLoggedIn }) => {
     };
 
     try {
-      // Assuming your login microservice is running at http://localhost:3001
+      // Assuming your login microservice is running at http://user-serv:5001
       const response = await axios.post(
-        "http://localhost:5000/login",
+        "http://event-serv/login",
         formData
       );
       console.log(response.status);

@@ -1,8 +1,7 @@
-# deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: stg 
+  name: stg-depl
 spec:
   replicas: 1
   selector:
@@ -11,8 +10,24 @@ spec:
   template:
     metadata:
       labels:
-        app: stg    
+        app: stg
     spec:
       containers:
-        - name: stg    
-          image: sha256:75e9252d30ec8335af0dd0b8da8c2986eb33e972ebef6aa4fff66627f4fc9248   
+        - name: stg
+          image: saadan1234/stg
+          ports:
+            - containerPort: 5003
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stg-serv
+spec:
+  type: ClusterIP
+  selector:
+    app: stg
+  ports:
+  - name: stg
+    protocol: TCP
+    port: 5003
+    targetPort: 5003
